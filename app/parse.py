@@ -31,7 +31,8 @@ def extract_quote_details(quote_element: BeautifulSoup) -> Quote:
 
 def parse_quotes_from_page(page_soup: BeautifulSoup) -> List[Quote]:
     quote_elements = page_soup.select(".quote")
-    return [extract_quote_details(quote_element) for quote_element in quote_elements]
+    return [extract_quote_details(quote_element)
+            for quote_element in quote_elements]
 
 
 def find_next_page_url(page_soup: BeautifulSoup) -> Optional[str]:
@@ -61,7 +62,6 @@ def write_quotes_to_csv(
 
         for quote in quotes:
             writer.writerow([quote.text, quote.author, str(quote.tags)])
-
 
 
 def main(output_csv_path: str) -> None:
